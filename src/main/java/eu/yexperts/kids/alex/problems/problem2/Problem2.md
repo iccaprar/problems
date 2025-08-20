@@ -5,6 +5,51 @@ Given a list of digits, sorted in descending order, check if it is possible to f
 Example input: **8 7 7 4 4** results in output: **74847**.
 Example input: **8 8 7 5 5 4 4 0** results in output: **imposibil**.
 
+
+# Algorithm
+
+```
+citesc cate numere n vrea utilizatorul
+citesc n numere in listaIntrare
+extrag pentru fiecare numar cifrele si le pun in listaCifre
+sortez descrescator listaCifre
+
+pornesc de la pozitia p=0 in listaCifre
+aflu len lungimea listaCifre
+
+folosesc listaPalindrom pentru a pune rezultatul, de lungime len
+folosesc stg initial 0
+folosesc drpt initial len-1
+
+folosec exceptie initial -1 (nu pot avea cifre -1 in numar)
+folosesc imposibil initial false
+
+repet cat timp p < len si imposibil = false
+    iau elementul x=listaCifre(p) si urmatorul y=listaCifre(p+1) (daca exista, daca nu, y ramane -1)
+    compar x cu y
+    daca sunt egale atunci
+        le pun x in pozitia stg si y in pozitia drpt in listaPalindrom
+        maresc stg cu 1 si micsorez drpt cu 1
+        maresc cu 2 pozitia p de unde citesc
+    daca nu
+        daca exceptie = -1 (inca nefolosit)
+            x il salvez in exceptie
+            maresc cu 1 pozitia de unde citest
+        altfel
+            imposibil = true
+
+daca am salvat ceva in exceptie (exceptie != -1), il pun la mijloc in listaPalindrom
+
+daca imposibil
+    afisez "imposibil"
+altfel
+    afisez "posibil"
+    afisez listaPalindrom
+```
+
+# Pseudocode
+
+
 ```
 list1 <- INPUT LIST OF NUMBERS
 n <- LEN(list1)
@@ -78,3 +123,5 @@ output <- c(7, 4, 8, 4, 7)
 list1 <- c(8, 8, 7, 5, 5, 4, 4, 0)
 n = 8
 output <- "imposibil"
+
+
